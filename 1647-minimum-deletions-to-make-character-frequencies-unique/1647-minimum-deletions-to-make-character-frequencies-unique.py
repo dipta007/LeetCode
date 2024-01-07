@@ -2,7 +2,6 @@ class Solution:
     def minDeletions(self, s: str) -> int:
         from collections import Counter
         mp = Counter(s)
-
         counters = Counter(mp.values())
 
         mark = {}
