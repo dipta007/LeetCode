@@ -27,6 +27,6 @@ class Solution:
         # print(call(10000000, 10000000))
         n = (n // 25) + int(n % 25 != 0)
         # print(call(400, 400))
-        if n > 400:
-            n = 400
+        if n > 200:
+            return 1.0
         return call(n, n)
