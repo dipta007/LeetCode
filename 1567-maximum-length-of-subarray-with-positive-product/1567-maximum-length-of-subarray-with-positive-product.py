@@ -9,8 +9,6 @@ class Solution:
             if r < l:
                 return 0
 
-            print(l, r)
-
             if sum([1 if v < 0 else 0 for v in nums[l: r+1]]) % 2 == 0:
                 return r - l + 1
             else:
