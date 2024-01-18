@@ -1,14 +1,18 @@
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        def checkBit(x, n):
-            return (1 << n) & x
-
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
         res = []
-        for B in range(2 ** len(nums)):
-            now = []
-            for j in range(len(nums)):
-                if checkBit(B, j):
-                    now.append(nums[j])
-            res.append(now)
-        
+        lim = (1 << len(nums))
+        for mask in range(lim):
+            tmp = []
+            for i in range(len(nums)):
+                def check(n, ind):
+                    return (((1 << ind) & n) > 0)
+                
+                if check(mask, i):
+                    tmp.append(nums[i])
+            res.append(tmp)
         return res
