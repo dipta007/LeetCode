@@ -14,7 +14,6 @@ class Solution:
             rgt_avg = rgt // ((len(nums) - i - 1) if i < len(nums)-1 else 1)
             nw = abs(lft_avg - rgt_avg)
 
-            print(i, nw, mn)
             if nw < mn:
                 mn = nw
                 ind = i
