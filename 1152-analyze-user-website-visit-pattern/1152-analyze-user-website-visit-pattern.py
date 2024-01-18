@@ -18,9 +18,7 @@ class Solution:
             nw = " ".join([x, y, z])
             prev = " ".join(res)
 
-            print(nw, prev, len(nw) < len(prev), nw < prev)
             return nw < prev
-            return len(nw) < len(prev) or nw < prev
 
         for k, v in user_visited.items():
             if len(v) >= 3:
