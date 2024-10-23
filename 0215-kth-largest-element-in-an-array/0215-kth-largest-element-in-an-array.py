@@ -1,12 +1,13 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        nums = [x + 10000 for x in nums]
-        mark = [0 for _ in range(20004)]
+        min_ele = min(nums)
+        max_ele = max(nums)
 
+        count = [0] * (max_ele - min_ele + 4)
         for v in nums:
-            mark[v] += 1
+            count[v - min_ele] += 1
         
-        for i in range(20000, -1, -1):
-            if mark[i] >= k:
-                return i - 10000
-            k -= mark[i]
+        for v in range(len(count)-1, -1, -1):
+            k -= count[v]
+            if k <= 0:
+                return v + min_ele
