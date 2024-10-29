@@ -1,29 +1,19 @@
-res = []
-vis = []
-
-def dfs(nums, now):
-    if len(now) == len(nums):
-        res.append(now[:])
-        return
-    
-    for ind, val in enumerate(nums):
-        if vis[ind] == 0:
-            vis[ind] = 1
-            now.append(val)
-            dfs(nums, now)
-            now.pop()
-            vis[ind] = 0
-    
-    
 class Solution:
-    def permute(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
-        global res
-        global vis
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        vis = [0] * 20
+
         res = []
-        vis = [0] * len(nums)
-        dfs(nums, [])
+        def call(curr):
+            if len(curr) == len(nums):
+                nonlocal res
+                res.append(curr)
+                return
+
+            for i in range(len(nums)):
+                if vis[i] == 0:
+                    vis[i] = 1
+                    call(curr + [nums[i]])
+                    vis[i] = 0
+            
+        call([])
         return res
