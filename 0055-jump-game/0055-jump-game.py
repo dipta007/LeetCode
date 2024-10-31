@@ -1,12 +1,12 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        dp = [False] * len(nums)
-        dp[-1] = True
-        last = len(nums) - 1
+        dp = [0] * (len(nums) + 4)
+        last_pos = len(nums) - 1
+
         for i in range(len(nums)-2, -1, -1):
-            mx_ind = i + nums[i]
-            if mx_ind >= last:
-                dp[i] = True
-                last = i
-        
-        return dp[0]
+            jump_to = i + nums[i]
+            if jump_to >= last_pos:
+                last_pos = i
+
+        # print(dp)        
+        return last_pos == 0
