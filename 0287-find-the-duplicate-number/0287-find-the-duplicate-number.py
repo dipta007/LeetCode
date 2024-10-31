@@ -1,25 +1,19 @@
 class Solution:
-    def findDuplicate(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        low = 1
-        high = len(nums)-1
-        
-        while low < high:
-            mid = (low + high) // 2
-            
-            print(low, mid, high)
-            
+    def findDuplicate(self, nums: List[int]) -> int:
+        l, h = 1, len(nums)
+        res = -1
+        while l < h:
+            m = (l + h) // 2
+
             cnt = 0
-            for val in nums:
-                if val <= mid:
+            for v in nums:
+                if v <= m:
                     cnt += 1
             
-            if cnt > mid:
-                high = mid
+            if cnt > m:
+                res = m
+                h = m
             else:
-                low = mid+1
-                
-        return low
+                l = m + 1
+        
+        return res
