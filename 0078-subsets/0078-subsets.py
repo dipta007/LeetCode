@@ -1,18 +1,15 @@
 class Solution:
-    def subsets(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        mark = [0] * len(nums)
+
         res = []
-        lim = (1 << len(nums))
-        for mask in range(lim):
-            tmp = []
-            for i in range(len(nums)):
-                def check(n, ind):
-                    return (((1 << ind) & n) > 0)
-                
-                if check(mask, i):
-                    tmp.append(nums[i])
-            res.append(tmp)
+        def call(i, curr):
+            if i == len(nums):
+                res.append(curr[:])
+                return
+            
+            call(i+1, curr + [nums[i]])
+            call(i+1, curr)
+        
+        call(0, [])
         return res
