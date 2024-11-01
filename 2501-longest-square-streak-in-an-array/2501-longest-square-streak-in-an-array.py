@@ -6,11 +6,11 @@ class Solution:
         for i, n in enumerate(nums):
             cnt = 0
             x = n
-            while True:
-                if x in counter:
-                    x = x * x
-                    cnt += 1
-                else: break
+            while x in counter and counter[x]:
+                counter[x] = 0
+                x = x * x
+                cnt += 1
+            # print(n, cnt)
             res = max(res, cnt)
         
         return res if res >= 2 else -1
