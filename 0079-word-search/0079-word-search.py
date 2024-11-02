@@ -28,7 +28,6 @@ class Solution:
             for j in range(c):
                 if board[i][j] == word[0]:
                     res = res or call(0, i, j, clr)
-                    print(i, j, res)
                     clr += 1
         
         return res
