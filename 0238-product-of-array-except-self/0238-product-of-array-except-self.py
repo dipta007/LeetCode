@@ -28,6 +28,5 @@ class Solution:
                 res.append(pre)
 
             pre *= nums[i]
-            zero += int(nums[i] == 0)
 
         return res
