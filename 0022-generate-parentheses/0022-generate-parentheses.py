@@ -1,25 +1,18 @@
-def call(pos, bp, bn, now):
-    if bp == 0 and bn == 0:
-        res.append("".join(now))
-        return
-    
-    if bp > 0:
-        now.append('(')
-        call(pos+1, bp-1, bn, now)
-        now.pop()
-        
-    if pos > 0:
-        now.append(')')
-        call(pos-1, bp, bn-1, now)
-        now.pop()
-    
 class Solution:
-    def generateParenthesis(self, n):
-        """
-        :type n: int
-        :rtype: List[str]
-        """
-        global res
+    def generateParenthesis(self, n: int) -> List[str]:
         res = []
-        call(0, n, n, [])
+        def call(i, p, curr):
+            if p < 0:
+                return
+            if i == n:
+                if p == 0 and curr:
+                    nonlocal res
+                    res.append(curr[:])
+                return
+
+            call(i+1, p+1, curr + '(')
+            call(i+1, p-1, curr + ')')
+
+        n = n + n
+        call(0, 0, "")
         return res
