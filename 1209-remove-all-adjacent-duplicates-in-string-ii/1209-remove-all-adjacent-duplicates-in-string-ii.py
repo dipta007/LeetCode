@@ -8,7 +8,7 @@ class Solution:
             else:
                 stack.append((c, 1))
             
-            while stack and stack[-1][1] == k:
+            if stack and stack[-1][1] == k:
                 tmp = stack[-1][0]
                 while stack and stack[-1][0] == tmp:
                     stack.pop()
