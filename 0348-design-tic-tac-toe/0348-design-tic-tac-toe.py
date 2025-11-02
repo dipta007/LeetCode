@@ -1,50 +1,67 @@
 class TicTacToe:
 
     def __init__(self, n: int):
-        self.mat = [[0] * n for _ in range(n)]
-        self.r, self.c = len(self.mat), len(self.mat[0])
+        self.n = n
+        self.b = [[-1 for _ in range(n)] for __ in range(n)]
+        
+    def check(self):
+        for i in range(self.n):
+            val = self.b[i][0]
+            if val == -1: continue
+            same = True
+            for j in range(self.n):
+                if self.b[i][j] != val:
+                    same = False
+                    break
+            if same:
+                return val
+        
+        for i in range(self.n):
+            val = self.b[0][i]
+            if val == -1: continue
+            same = True
+            for j in range(self.n):
+                if self.b[j][i] != val:
+                    same = False
+                    break
+            if same:
+                return val
+            
+        i, j = 0, 0
+        val = self.b[0][0]
+        same = True
+        while i < self.n:
+            if self.b[i][j] != val:
+                same = False
+                break
+            i += 1
+            j += 1
+        if same and val != -1:
+            return val
+        
+        i, j = 0, self.n-1
+        val = self.b[0][self.n-1]
+        same = True
+        while i < self.n:
+            if self.b[i][j] != val:
+                same = False
+                break
+            i += 1
+            j -= 1
+        if same and val != -1:
+            return val
+        
+        return -1
 
     def move(self, row: int, col: int, player: int) -> int:
-        def win():
-            win = True
-            for i in range(self.c):
-                if self.mat[row][i] != player:
-                    win = False
-            if win: return True
-
-            win = True
-            for i in range(self.r):
-                if self.mat[i][col] != player:
-                    win = False
-            if win: return True
-
-            if row - col == 0:
-                cnt = 0
-                i, j = 0, 0
-                while i < self.r and j < self.c:
-                    cnt += int(self.mat[i][j] == player)
-                    i += 1
-                    j += 1
+        self.b[row][col] = player
+        win = self.check()
+        if win == -1: win = 0
+        return win
             
-                if cnt == self.r:
-                    return True
 
-            if row == self.r - col - 1:
-                cnt = 0
-                i, j = 0, self.r-1
-                while i < self.r and j >= 0:
-                    cnt += int(self.mat[i][j] == player)
-                    i += 1
-                    j -= 1
-                print("+", cnt, row, col, player)
-                if cnt == self.r:
-                    return True
+        
 
-            return False
-
-        self.mat[row][col] = player
-        if win(): return player
-        return 0
 
 # Your TicTacToe object will be instantiated and called as such:
 # obj = TicTacToe(n)
