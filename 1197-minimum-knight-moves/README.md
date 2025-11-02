@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/minimum-knight-moves/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days">1197. Minimum Knight Moves</a></h2><h3>Medium</h3><hr><p>In an <strong>infinite</strong> chess board with coordinates from <code>-infinity</code> to <code>+infinity</code>, you have a <strong>knight</strong> at square <code>[0, 0]</code>.</p>
+<h2><a href="https://leetcode.com/problems/minimum-knight-moves">1197. Minimum Knight Moves</a></h2><h3>Medium</h3><hr><p>In an <strong>infinite</strong> chess board with coordinates from <code>-infinity</code> to <code>+infinity</code>, you have a <strong>knight</strong> at square <code>[0, 0]</code>.</p>
 
 <p>A knight has 8 possible moves it can make, as illustrated below. Each move is two squares in a cardinal direction, then one square in an orthogonal direction.</p>
 <img src="https://assets.leetcode.com/uploads/2018/10/12/knight.png" style="height: 250px; width: 250px;" />
