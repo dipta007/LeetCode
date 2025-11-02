@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/design-tic-tac-toe/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days">348. Design Tic-Tac-Toe</a></h2><h3>Medium</h3><hr><p>Assume the following rules are for the tic-tac-toe game on an <code>n x n</code> board between two players:</p>
+<h2><a href="https://leetcode.com/problems/design-tic-tac-toe">348. Design Tic-Tac-Toe</a></h2><h3>Medium</h3><hr><p>Assume the following rules are for the tic-tac-toe game on an <code>n x n</code> board between two players:</p>
 
 <ol>
 	<li>A move is guaranteed to be valid and is placed on an empty block.</li>
