@@ -1,24 +1,31 @@
-dx = [-2, -1, 2, 1, 2, 1, -2, -1]
-dy = [-1, -2, -1, -2, 1, 2, 1, 2]
-
+dx = [-1, -1, -2, -2, 1, 1, 2, 2]
+dy = [-2, 2, -1, 1, -2, 2, -1, 1]
 class Solution:
     def minKnightMoves(self, x: int, y: int) -> int:
         from collections import deque
+        
         vis = {}
-        dq = deque()
+        for i in range(-300, 301):
+            vis[i] = {}
+            for j in range(-300, 301):
+                vis[i][j] = 0
 
-        dq.append((0, 0, 0))
-        while len(dq):
-            ux, uy, d = dq.popleft()
+        def bfs(ux, uy):
+            q = deque()
+            q.append((ux, uy, 0))
 
-            if ux == x and uy == y:
-                return d
+            while len(q):
+                ux, uy, d = q.popleft()
+                if ux == x and uy == y:
+                    return d
+                for dxx, dyy in zip(dx, dy):
+                    vx = ux + dxx
+                    vy = uy + dyy
 
-            for dxx, dyy in zip(dx, dy):
-                vx = ux + dxx
-                vy = uy + dyy
+                    if vx >= -300 and vy >= -300 and vx <= 300 and vy <= 300 and vis[vx][vy] == 0:
+                        vis[vx][vy] = 1
+                        q.append((vx, vy, d+1))
+                
+        return bfs(0, 0)
 
-                if vx >= -300 and vy >= -300 and vx <= 300 and vy <= 300 and (vx, vy) not in vis:
-                    vis[(vx, vy)] = 1
-                    dq.append((vx, vy, d+1))
         
