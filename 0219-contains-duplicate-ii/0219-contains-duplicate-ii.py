@@ -1,15 +1,11 @@
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        import bisect
-        mp_set = {}
-        for i, v in enumerate(nums):
-            if v not in mp_set:
-                mp_set[v] = i
-            else:
-                need = i - k
-                if mp_set[v] >= need:
+        last = {}
+        for i in range(0, len(nums)): 
+            curr = nums[i]
+            if curr in last:
+                lind = last[curr]
+                if i - lind <= k:
                     return True
-            
-            mp_set[v] = i
-
+            last[curr] = i
         return False
