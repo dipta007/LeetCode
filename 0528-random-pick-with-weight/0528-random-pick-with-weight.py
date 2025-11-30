@@ -1,26 +1,25 @@
 class Solution:
 
     def __init__(self, w: List[int]):
-        self.pre = [0]
-        for v in w:
-            self.pre.append(self.pre[-1] + v)
+        cum = [0]
+        for _w in w:
+            cum.append(cum[-1] + _w)
+        self.cum = cum
+        self.l = 1
+        self.h = cum[-1]
 
     def pickIndex(self) -> int:
-        # ww = random.randint(min(1, self.pre[1]), self.pre[-1]+1)
-        # ww = random.randint(0, self.pre[-1]+1)
-        ww = self.pre[-1] * random.random()
-        # print(ww)
-        l, h = 1, len(self.pre) - 1
-        res = 1
+        rn = random.randint(self.l, self.h)
+        l, h = 0, len(self.cum) - 1
+        res = -1
         while l <= h:
-            m = (l + h) // 2
-            if ww <= self.pre[m]:
-                res = m
+            m = (l+h)//2
+            if rn <= self.cum[m]:
                 h = m - 1
+                res = m
             else:
                 l = m + 1
         return res - 1
-
         
 
 
