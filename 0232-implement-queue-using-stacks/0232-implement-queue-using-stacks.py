@@ -1,32 +1,39 @@
 class MyQueue:
 
     def __init__(self):
-        self.buffer = []
-        self.queue = []
+        self.a = []
+        self.b = []
+        
 
     def push(self, x: int) -> None:
-        self.buffer.append(x)
+        self.a.append(x)
         
+    def _transfer(self):
+        while self.a:
+            v = self.a.pop()
+            self.b.append(v)
 
     def pop(self) -> int:
-        if len(self.queue) == 0:
-            while self.buffer:
-                self.queue.append(self.buffer[-1])
-                self.buffer.pop()
-        tmp = self.queue.pop()
-        return tmp
+        if self.b:
+            v = self.b.pop()
+            return v
         
+        self._transfer()
+        v = self.b.pop()
+        return v
 
+        
     def peek(self) -> int:
-        if len(self.queue) == 0:
-            while self.buffer:
-                self.queue.append(self.buffer[-1])
-                self.buffer.pop()
-        return self.queue[-1]
+        if self.b:
+            return self.b[-1]
+        
+        self._transfer()
+        return self.b[-1]
         
 
     def empty(self) -> bool:
-        return (len(self.buffer) == 0 and len(self.queue) == 0)
+        return len(self.a) == 0 and len(self.b) == 0
+        
 
 
 # Your MyQueue object will be instantiated and called as such:
