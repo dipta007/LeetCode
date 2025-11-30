@@ -1,29 +1,29 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        # find pivot
-        l, r = 0, len(nums) - 1
-        pivot = -1
-        while l <= r:
-            m = (l + r) // 2
-            if nums[m] > nums[-1]:
-                l = m + 1
-            else:
-                pivot = m
-                r = m - 1
-            
-        def search(l, r):
+        if len(nums) == 1:
+            return 0 if nums[0] == target else -1
+
+        def _find_pivot():
+            l, h = 0, len(nums) - 1
             res = -1
-            while l <= r:
-                m = (l + r) // 2
-                if nums[m] < target:
+            while l <= h:
+                m = (l + h) // 2
+                if nums[m] > nums[0]:
                     l = m + 1
-                elif nums[m] > target:
-                    r = m - 1
                 else:
-                    return m
-            return -1
+                    res = m
+                    h = m - 1
+
+            return res
         
-        # run 2 search
-        lft = search(0, pivot-1)
-        if lft == -1: return search(pivot, len(nums)-1)
-        return lft
+        p = _find_pivot()
+        i1 = bisect.bisect_left(nums[:p], target)
+        i2 = bisect.bisect_left(nums[p:], target) + p
+        if i1 < len(nums) and nums[i1] == target:
+            return i1
+        if i2 < len(nums) and nums[i2] == target:
+            return i2
+        return -1
+
+
+
